@@ -1,6 +1,16 @@
+import { prisma } from '@/db';
+
 export default function SnippetCreatePage() {
+  async function createSnippet(formData: FormData) {
+    'use server';
+    console.log(formData);
+  }
+
   return (
-    <form action='' className='m-4 flex flex-col gap-4 rounded bg-zinc-100 p-4 dark:bg-zinc-900'>
+    <form
+      action={createSnippet}
+      className='m-4 flex flex-col gap-4 rounded bg-zinc-100 p-4 dark:bg-zinc-900'
+    >
       <h3 className='text-2xl font-bold'>Create a Snippet</h3>
       <label htmlFor='title'>Title</label>
       <input
