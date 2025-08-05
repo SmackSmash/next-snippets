@@ -10,7 +10,11 @@ export default function SnippetCreatePage() {
         className='rounded bg-zinc-200 p-2 text-zinc-900'
       />
       <label htmlFor='code'>Code</label>
-      <textarea name='code' id='code' className='rounded bg-zinc-200 p-2 text-zinc-900'></textarea>
+      <textarea
+        name='code'
+        id='code'
+        className='rounded bg-zinc-200 p-2 font-mono text-zinc-900'
+      ></textarea>
     </form>
   );
 }
