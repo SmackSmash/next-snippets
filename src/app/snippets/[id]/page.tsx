@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { prisma } from '@/db';
 import ShowSnippet from '@/components/show-snippet';
 
@@ -9,7 +10,9 @@ export default async function ShowSnippetPage({ params }: ShowSnippetPageProps) 
   const { id } = await params;
   const snippet = await prisma.snippet.findUnique({ where: { id: Number(id) } });
 
-  if (snippet) {
+  if (!snippet) {
+    return notFound();
+  } else {
     const { title, code } = snippet;
 
     return (
