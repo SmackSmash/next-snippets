@@ -10,7 +10,8 @@ export default async function ShowSnippetPage({ params }: ShowSnippetPageProps) 
   const { id } = await params;
   const snippet = await prisma.snippet.findUnique({ where: { id: Number(id) } });
 
-  if (!snippet) return notFound();
+  // Do not need to return notFound due to using the TypeScript 'never' type.
+  if (!snippet) notFound();
 
   const { title, code } = snippet;
 
