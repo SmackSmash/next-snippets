@@ -1,4 +1,7 @@
+import type { BundledLanguage } from 'shiki';
+import { codeToHtml } from 'shiki';
 import { prisma } from '@/db';
+import './shiki.css';
 
 export default async function HomePage() {
   const snippets = await prisma.snippet.findMany();
@@ -12,10 +15,24 @@ export default async function HomePage() {
         {snippets.map(({ id, title, code }) => (
           <div key={id} className='flex flex-col gap-2'>
             <h2 className='text-xl'>{title}</h2>
-            <p className='font-mono'>{code}</p>
+            <CodeBlock lang='ts'>{code}</CodeBlock>
           </div>
         ))}
       </div>
     </div>
   );
+}
+
+type CodeBlockProps = {
+  children: string;
+  lang: BundledLanguage;
+};
+
+async function CodeBlock(props: CodeBlockProps) {
+  const out = await codeToHtml(props.children, {
+    lang: props.lang,
+    theme: 'poimandres'
+  });
+
+  return <div dangerouslySetInnerHTML={{ __html: out }} />;
 }
