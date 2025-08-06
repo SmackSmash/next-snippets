@@ -1,14 +1,14 @@
 'use client';
 
-import type { FC } from 'react';
-
-const EditSnippetForm: FC<{
+type EditSnippetFormProps = {
   snippet: {
     id: number;
     title: string;
     code: string;
   };
-}> = ({ snippet: { id, title, code } }) => {
+};
+
+export default function EditSnippetForm({ snippet: { id, title, code } }: EditSnippetFormProps) {
   return (
     <form className='flex flex-col gap-4'>
       <h3 className='text-2xl font-bold'>Edit Snippet #{id}</h3>
@@ -36,6 +36,4 @@ const EditSnippetForm: FC<{
       </button>
     </form>
   );
-};
-
-export default EditSnippetForm;
+}
