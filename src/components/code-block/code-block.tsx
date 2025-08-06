@@ -1,6 +1,6 @@
 import type { BundledLanguage } from 'shiki';
 import { codeToHtml } from 'shiki';
-import './shiki.css';
+import './code-block.css';
 
 type CodeBlockProps = {
   children: string;

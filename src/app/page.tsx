@@ -1,5 +1,5 @@
 import { prisma } from '@/db';
-import CodeBlock from '@/hooks/useShiki';
+import CodeBlock from '@/components/code-block/code-block';
 
 export default async function HomePage() {
   const snippets = await prisma.snippet.findMany();
