@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/db';
 import ShowSnippet from '@/components/show-snippet';
@@ -22,7 +23,9 @@ export default async function ShowSnippetPage({ params }: ShowSnippetPageProps) 
     <>
       <div className='flex items-center gap-4'>
         <h1 className='mb-2 text-2xl font-bold'>Snippet {id}</h1>
-        <button className='ml-auto cursor-pointer'>Edit</button>
+        <Link href={`/snippets/${id}/edit`} className='ml-auto cursor-pointer'>
+          Edit
+        </Link>
         <button className='cursor-pointer text-red-500'>Delete</button>
       </div>
       <ShowSnippet title={title} code={code} />
