@@ -1,5 +1,4 @@
 import { prisma } from '@/db';
-import CodeBlock from '@/components/code-block/code-block';
 import ShowSnippet from '@/components/show-snippet';
 import Link from 'next/link';
 
