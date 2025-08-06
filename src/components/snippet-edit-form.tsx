@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { EditorView, basicSetup } from 'codemirror';
 import { javascript } from '@codemirror/lang-javascript';
-import { nord } from '@fsegurai/codemirror-theme-nord';
+import { tokyoNightStorm } from '@fsegurai/codemirror-theme-tokyo-night-storm';
 
 type EditSnippetFormProps = {
   snippet: {
@@ -19,7 +19,7 @@ export default function EditSnippetForm({ snippet: { id, title, code } }: EditSn
   useEffect(() => {
     let view = new EditorView({
       doc: code,
-      extensions: [basicSetup, javascript(), nord],
+      extensions: [basicSetup, javascript(), tokyoNightStorm],
       parent: editor.current as HTMLDivElement
     });
 
