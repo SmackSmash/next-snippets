@@ -10,7 +10,7 @@ export default async function HomePage() {
       <h1 className='mb-2 text-2xl font-bold'>Snippets</h1>
       <div className='flex flex-col gap-8'>
         {snippets.map(({ id, title, code }) => (
-          <ShowSnippet key={id} title={title} code={code} />
+          <ShowSnippet key={id} id={id} title={title} code={code} />
         ))}
       </div>
     </>
