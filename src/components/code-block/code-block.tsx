@@ -10,7 +10,7 @@ type CodeBlockProps = {
 export default async function CodeBlock(props: CodeBlockProps) {
   const out = await codeToHtml(props.children, {
     lang: props.lang,
-    theme: 'poimandres'
+    theme: 'nord'
   });
 
   return <div dangerouslySetInnerHTML={{ __html: out }} />;
