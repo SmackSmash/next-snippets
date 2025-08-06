@@ -1,5 +1,6 @@
 'use client';
 
+import { type Snippet } from '@/generated/prisma';
 import { useEffect, useRef, useState } from 'react';
 import { basicSetup } from 'codemirror';
 import { EditorState } from '@codemirror/state';
@@ -9,11 +10,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { tokyoNightStorm } from '@fsegurai/codemirror-theme-tokyo-night-storm';
 
 type EditSnippetFormProps = {
-  snippet: {
-    id: number;
-    title: string;
-    code: string;
-  };
+  snippet: Snippet;
 };
 
 export default function EditSnippetForm({ snippet: { id, title, code } }: EditSnippetFormProps) {
@@ -39,7 +36,7 @@ export default function EditSnippetForm({ snippet: { id, title, code } }: EditSn
     return () => {
       view.destroy();
     };
-  }, [id]);
+  }, []);
 
   return (
     <form className='flex flex-col gap-4'>
@@ -56,6 +53,7 @@ export default function EditSnippetForm({ snippet: { id, title, code } }: EditSn
       <textarea
         name='code'
         id='code'
+        readOnly
         value={editorCode}
         className='min-h-64 rounded bg-zinc-200 p-2 font-mono text-zinc-900 outline-0 focus-visible:outline-2 dark:bg-zinc-800 dark:text-zinc-50'
       ></textarea>
