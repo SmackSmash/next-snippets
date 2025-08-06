@@ -20,7 +20,11 @@ export default async function ShowSnippetPage({ params }: ShowSnippetPageProps) 
 
   return (
     <>
-      <h1 className='mb-2 text-2xl font-bold'>Snippet {id}</h1>
+      <div className='flex items-center gap-4'>
+        <h1 className='mb-2 text-2xl font-bold'>Snippet {id}</h1>
+        <button className='ml-auto cursor-pointer'>Edit</button>
+        <button className='cursor-pointer text-red-500'>Delete</button>
+      </div>
       <ShowSnippet title={title} code={code} />
     </>
   );
