@@ -7,7 +7,7 @@ type ShowSnippetProps = {
   code: string;
 };
 
-export default async function ShowSnippet({ id, title, code }: ShowSnippetProps) {
+export default function ShowSnippet({ id, title, code }: ShowSnippetProps) {
   return (
     <div className='flex flex-col gap-2'>
       <div className='flex items-center justify-between'>
