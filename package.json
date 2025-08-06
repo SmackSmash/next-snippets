@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.4",
+    "@fsegurai/codemirror-theme-nord": "^6.2.0",
     "@prisma/client": "6.13.0",
+    "codemirror": "^6.0.2",
     "next": "15.4.5",
     "prisma": "^6.13.0",
     "react": "19.1.0",
