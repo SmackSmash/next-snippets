@@ -6,13 +6,13 @@ export default async function HomePage() {
   const snippets = await prisma.snippet.findMany();
 
   return (
-    <div className='m-4 flex flex-col gap-4 rounded bg-zinc-100 p-4 dark:bg-zinc-900'>
+    <>
       <h1 className='mb-2 text-2xl font-bold'>Snippets</h1>
       <div className='flex flex-col gap-8'>
         {snippets.map(({ id, title, code }) => (
           <ShowSnippet key={id} title={title} code={code} />
         ))}
       </div>
-    </div>
+    </>
   );
 }
