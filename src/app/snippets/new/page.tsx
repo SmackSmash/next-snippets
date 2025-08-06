@@ -1,4 +1,5 @@
 import { prisma } from '@/db';
+import { redirect } from 'next/navigation';
 
 export default function SnippetCreatePage() {
   // formData automatically passed to server action when it is assigned
@@ -17,10 +18,13 @@ export default function SnippetCreatePage() {
     });
 
     console.log(snippet);
+
+    redirect('/');
   }
 
   return (
     <form
+      // Server action passed here
       action={createSnippet}
       className='m-4 flex flex-col gap-4 rounded bg-zinc-100 p-4 dark:bg-zinc-900'
     >
