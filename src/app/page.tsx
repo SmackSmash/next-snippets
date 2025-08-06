@@ -1,7 +1,5 @@
-import type { BundledLanguage } from 'shiki';
-import { codeToHtml } from 'shiki';
 import { prisma } from '@/db';
-import './shiki.css';
+import CodeBlock from '@/hooks/useShiki';
 
 export default async function HomePage() {
   const snippets = await prisma.snippet.findMany();
@@ -19,18 +17,4 @@ export default async function HomePage() {
       </div>
     </div>
   );
-}
-
-type CodeBlockProps = {
-  children: string;
-  lang: BundledLanguage;
-};
-
-async function CodeBlock(props: CodeBlockProps) {
-  const out = await codeToHtml(props.children, {
-    lang: props.lang,
-    theme: 'poimandres'
-  });
-
-  return <div dangerouslySetInnerHTML={{ __html: out }} />;
 }
