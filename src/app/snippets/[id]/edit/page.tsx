@@ -29,5 +29,5 @@ export default async function EditSnippetPage({ params }: EditSnippetPageProps) 
 
   if (!snippet) notFound();
 
-  return <EditSnippetForm snippet={snippet} editSnippet={editSnippet} />;
+  return <EditSnippetForm snippet={snippet} onSubmit={editSnippet} />;
 }

@@ -11,12 +11,12 @@ import { tokyoNightStorm } from '@fsegurai/codemirror-theme-tokyo-night-storm';
 
 type EditSnippetFormProps = {
   snippet: Snippet;
-  editSnippet: (formData: FormData) => Promise<void>;
+  onSubmit: (formData: FormData) => Promise<void>;
 };
 
 export default function EditSnippetForm({
   snippet: { id, title, code },
-  editSnippet
+  onSubmit
 }: EditSnippetFormProps) {
   const [editorCode, setEditorCode] = useState(code);
 
@@ -43,7 +43,7 @@ export default function EditSnippetForm({
   }, []);
 
   return (
-    <form action={editSnippet} className='flex flex-col gap-4'>
+    <form action={onSubmit} className='flex flex-col gap-4'>
       <h3 className='text-2xl font-bold'>Edit Snippet #{id}</h3>
       <label htmlFor='title'>Title</label>
       <input
