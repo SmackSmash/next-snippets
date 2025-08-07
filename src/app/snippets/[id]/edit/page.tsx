@@ -10,24 +10,24 @@ export default async function EditSnippetPage({ params }: EditSnippetPageProps) 
   const { id } = await params;
   const snippet = await prisma.snippet.findUnique({ where: { id: Number(id) } });
 
-  // async function editSnippet(formData: FormData) {
-  //   'use server';
+  async function editSnippet(formData: FormData) {
+    'use server';
 
-  //   const title = formData.get('title') as string;
-  //   const code = formData.get('code') as string;
+    const title = formData.get('title') as string;
+    const code = formData.get('code') as string;
 
-  //   await prisma.snippet.update({
-  //     where: { id: Number(id) },
-  //     data: {
-  //       title,
-  //       code
-  //     }
-  //   });
+    await prisma.snippet.update({
+      where: { id: Number(id) },
+      data: {
+        title,
+        code
+      }
+    });
 
-  //   redirect(`/snippets/${id}`);
-  // }
+    redirect(`/snippets/${id}`);
+  }
 
   if (!snippet) notFound();
 
-  return <EditSnippetForm snippet={snippet} />;
+  return <EditSnippetForm snippet={snippet} editSnippet={editSnippet} />;
 }
