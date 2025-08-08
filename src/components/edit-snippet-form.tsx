@@ -8,16 +8,13 @@ import { EditorView, keymap } from '@codemirror/view';
 import { indentWithTab } from '@codemirror/commands';
 import { javascript } from '@codemirror/lang-javascript';
 import { tokyoNightStorm } from '@fsegurai/codemirror-theme-tokyo-night-storm';
+import { editSnippet } from '@/actions';
 
 type EditSnippetFormProps = {
   snippet: Snippet;
-  onSubmit: (formData: FormData) => Promise<void>;
 };
 
-export default function EditSnippetForm({
-  snippet: { id, title, code },
-  onSubmit
-}: EditSnippetFormProps) {
+export default function EditSnippetForm({ snippet: { id, title, code } }: EditSnippetFormProps) {
   const [editorCode, setEditorCode] = useState(code);
 
   const editor = useRef<HTMLDivElement>(null);
@@ -42,8 +39,12 @@ export default function EditSnippetForm({
     };
   }, []);
 
+  const handleSubmit = (formData: FormData) => {
+    editSnippet(formData, id);
+  };
+
   return (
-    <form action={onSubmit} className='flex flex-col gap-4'>
+    <form action={handleSubmit} className='flex flex-col gap-4'>
       <h3 className='text-2xl font-bold'>Edit Snippet #{id}</h3>
       <label htmlFor='title'>Title</label>
       <input
