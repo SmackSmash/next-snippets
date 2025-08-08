@@ -1,27 +1,6 @@
-import { prisma } from '@/db';
-import { redirect } from 'next/navigation';
+import { createSnippet } from '@/actions';
 
 export default function SnippetCreatePage() {
-  // formData automatically passed to server action when it is assigned
-  // to the form's 'action' attribute
-  async function createSnippet(formData: FormData) {
-    'use server';
-    // Simple ts validation
-    const title = formData.get('title') as string;
-    const code = formData.get('code') as string;
-
-    const snippet = await prisma.snippet.create({
-      data: {
-        title,
-        code
-      }
-    });
-
-    console.log(snippet);
-
-    redirect('/');
-  }
-
   return (
     <>
       <form
