@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/db';
 import ShowSnippet from '@/components/show-snippet';
+import { deleteSnippet } from '@/actions';
 
 type ShowSnippetPageProps = {
   params: Promise<{ id: string }>;
@@ -19,6 +20,8 @@ export default async function ShowSnippetPage({ params }: ShowSnippetPageProps) 
 
   const { title, code } = snippet;
 
+  const deleteSnippetAction = deleteSnippet.bind(null, Number(id));
+
   return (
     <>
       <div className='flex items-center gap-4'>
@@ -26,7 +29,11 @@ export default async function ShowSnippetPage({ params }: ShowSnippetPageProps) 
         <Link href={`/snippets/${id}/edit`} className='ml-auto cursor-pointer'>
           Edit
         </Link>
-        <button className='cursor-pointer text-red-500'>Delete</button>
+        <form action={deleteSnippetAction}>
+          <button type='submit' className='cursor-pointer text-red-500'>
+            Delete
+          </button>
+        </form>
       </div>
       <ShowSnippet title={title} code={code} />
     </>
