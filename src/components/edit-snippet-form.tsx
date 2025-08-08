@@ -39,12 +39,14 @@ export default function EditSnippetForm({ snippet: { id, title, code } }: EditSn
     };
   }, []);
 
-  const handleSubmit = (formData: FormData) => {
-    editSnippet(formData, id);
-  };
+  // Bind to assign 'id' as first arguiment of edit snippet function
+  // Allows us to use server action as form action with no react faffing
+  // Here, the formData is only supplying the title, id is pulled from
+  // params and editorCode is pulled from state
+  const editSnippetAction = editSnippet.bind(null, id, editorCode);
 
   return (
-    <form action={handleSubmit} className='flex flex-col gap-4'>
+    <form action={editSnippetAction} className='flex flex-col gap-4'>
       <h3 className='text-2xl font-bold'>Edit Snippet #{id}</h3>
       <label htmlFor='title'>Title</label>
       <input
@@ -55,14 +57,6 @@ export default function EditSnippetForm({ snippet: { id, title, code } }: EditSn
         className='rounded bg-zinc-200 p-2 text-zinc-900 outline-0 focus-visible:outline-2 dark:bg-zinc-800 dark:text-zinc-50'
       />
       <label htmlFor='code'>Code</label>
-      <textarea
-        name='code'
-        id='code'
-        readOnly
-        hidden
-        value={editorCode}
-        className='min-h-64 rounded bg-zinc-200 p-2 font-mono text-zinc-900 outline-0 focus-visible:outline-2 dark:bg-zinc-800 dark:text-zinc-50'
-      ></textarea>
       <div ref={editor}></div>
       <button
         type='submit'
