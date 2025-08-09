@@ -1,10 +1,17 @@
+'use client';
+
+import { useActionState } from 'react';
 import { createSnippet } from '@/actions';
 
 export default function SnippetCreatePage() {
+  // useActionState can allow us to communicate back from the server
+  // function to the component in a way that does not require js
+  const [state, action, pending] = useActionState(createSnippet, { message: '' });
+
   return (
     <form
       // Server action passed here
-      action={createSnippet}
+      action={action}
       className='flex flex-col gap-4'
     >
       <h3 className='text-2xl font-bold'>Create a Snippet</h3>

@@ -5,21 +5,25 @@ import { redirect } from 'next/navigation';
 
 // formData automatically passed to server action when it is assigned
 // to the form's 'action' attribute
-export async function createSnippet(formData: FormData) {
+export async function createSnippet(actionState: { message: string }, formData: FormData) {
+  return {
+    message: 'Title must be longer'
+  };
+
   // Simple ts validation
-  const title = formData.get('title') as string;
-  const code = formData.get('code') as string;
+  // const title = formData.get('title') as string;
+  // const code = formData.get('code') as string;
 
-  const snippet = await prisma.snippet.create({
-    data: {
-      title,
-      code
-    }
-  });
+  // const snippet = await prisma.snippet.create({
+  //   data: {
+  //     title,
+  //     code
+  //   }
+  // });
 
-  console.log(snippet);
+  // console.log(snippet);
 
-  redirect('/');
+  // redirect('/');
 }
 
 export async function editSnippet(id: number, code: string, formData: FormData) {
