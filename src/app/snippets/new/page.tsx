@@ -3,7 +3,7 @@
 import { useActionState } from 'react';
 import { createSnippet } from '@/actions';
 
-export default function SnippetCreatePage() {
+export default function CreateSnippetPage() {
   // useActionState can allow us to communicate back from the server
   // function to the component in a way that does not require js
   const [state, action, pending] = useActionState(createSnippet, {
