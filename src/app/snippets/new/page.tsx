@@ -24,7 +24,9 @@ export default function CreateSnippetPage() {
 
   return (
     <form
-      // Server action passed here
+      // NB. Not using form action as is recommended by NextJS
+      // Instead using traditional react method for handling
+      // using onSubmit event
       onSubmit={e => handleSubmit(e)}
       className='flex flex-col gap-4'
     >
