@@ -15,6 +15,8 @@ export async function createSnippet(actionState: { message: string }, formData: 
   if (typeof code !== 'string' || code.length < 10)
     return { message: 'Please enter a valid snippet' };
 
+  throw new Error('Aaaaaaah!');
+
   await prisma.snippet.create({
     data: {
       title,
