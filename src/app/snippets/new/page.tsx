@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { type FormEvent, startTransition, useActionState } from 'react';
 import { createSnippet } from '@/actions';
 
 export default function CreateSnippetPage() {
@@ -11,10 +11,21 @@ export default function CreateSnippetPage() {
     message: ''
   });
 
+  // React 19 automatically clears forms on submit so we need
+  // to use the more verbose old react method for sumbitting
+  // data to the server action
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    startTransition(() => {
+      action(formData);
+    });
+  }
+
   return (
     <form
       // Server action passed here
-      action={action}
+      onSubmit={e => handleSubmit(e)}
       className='flex flex-col gap-4'
     >
       <h3 className='text-2xl font-bold'>Create a Snippet</h3>
