@@ -8,7 +8,7 @@ export default function CreateSnippetPage() {
   // function to the component in a way that does not require js
   // Basically it's PHP, but don't tell anyone I said that
   const [state, action, pending] = useActionState(createSnippet, {
-    message: 'Nothing to see here'
+    message: ''
   });
 
   return (
