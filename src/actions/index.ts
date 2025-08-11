@@ -1,5 +1,6 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
 import { prisma } from '@/db';
 import { redirect } from 'next/navigation';
 
@@ -28,6 +29,7 @@ export async function createSnippet(actionState: { message: string }, formData: 
   }
   // Redirect will actually throw an error under all circumstances,
   // so we extract them from trycatch statements
+  revalidatePath('/');
   redirect('/');
 }
 
@@ -42,6 +44,7 @@ export async function editSnippet(id: number, code: string, formData: FormData) 
     }
   });
 
+  revalidatePath('/');
   redirect(`/snippets/${id}`);
 }
 
@@ -56,5 +59,6 @@ export async function deleteSnippet(id: number) {
 
   await prisma.snippet.delete({ where: { id } });
 
+  revalidatePath('/');
   redirect(`/`);
 }
