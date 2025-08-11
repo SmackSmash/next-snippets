@@ -1,6 +1,6 @@
 'use client';
 
-import { type Snippet } from '@/generated/prisma';
+import { type Snippet } from '@prisma/client';
 import { useEffect, useRef, useState } from 'react';
 import { basicSetup } from 'codemirror';
 import { EditorState } from '@codemirror/state';

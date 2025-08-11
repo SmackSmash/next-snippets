@@ -1,6 +1,6 @@
 // After running 'prisma generate' link to the client
 // in the generated folder.
-import { PrismaClient } from '@/generated/prisma';
+import { PrismaClient } from '@prisma/client';
 
 export const prisma = new PrismaClient();
 
