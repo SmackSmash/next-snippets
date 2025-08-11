@@ -44,7 +44,9 @@ export default function CreateSnippetPage() {
         id='code'
         className='min-h-64 rounded bg-zinc-200 p-2 font-mono text-zinc-900 outline-0 focus-visible:outline-2 dark:bg-zinc-800 dark:text-zinc-50'
       ></textarea>
-      {pending ? 'Loading...' : state.message}
+      {pending
+        ? 'Loading...'
+        : state.message && <div className='text-red-500'>{state.message}</div>}
       <button
         type='submit'
         className='cursor-pointer rounded bg-zinc-800 p-4 text-zinc-50 dark:bg-zinc-200 dark:text-zinc-900'
