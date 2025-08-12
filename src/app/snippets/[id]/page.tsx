@@ -39,3 +39,14 @@ export default async function ShowSnippetPage({ params }: ShowSnippetPageProps) 
     </>
   );
 }
+
+// Pre-render dynamic routes at build time
+export async function generateStaticParams() {
+  const snippets = await prisma.snippet.findMany();
+
+  return snippets.map(({ id }) => {
+    return {
+      id: String(id)
+    };
+  });
+}
